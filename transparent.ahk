@@ -1,11 +1,23 @@
 ^!RButton::
 WinGet, currentTransparency, Transparent, A
-if (currentTransparency = OFF)
+if (currentTransparency = "")
 {
-    WinSet, Transparent, 220, A
+    currentTransparency := 220
 }
-else
+newTransparency := currentTransparency + 10
+if (newTransparency > 255)
+    newTransparency := 255
+WinSet, Transparent, %newTransparency%, A
+return
+
+^!LButton::
+WinGet, currentTransparency, Transparent, A
+if (currentTransparency = "")
 {
-    WinSet, Transparent, OFF, A
+    currentTransparency := 220
 }
+newTransparency := currentTransparency - 10
+if (newTransparency < 0)
+    newTransparency := 0
+WinSet, Transparent, %newTransparency%, A
 return
